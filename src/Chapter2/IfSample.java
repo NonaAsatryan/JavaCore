@@ -2,10 +2,10 @@ package Chapter2;
 
 /*
    Demonstrate the if.
-   Call this file Example3.java.
+   Call this file "IfSample.java".
  */
 
-public class Example3 {
+public class IfSample {
     public static void main(String[] args) {
         int x, y;
 

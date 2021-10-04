@@ -2,10 +2,10 @@ package Chapter2;
 
 /*
   Demonstrate a block of code.
-  Call this file "Example5.java"
+  Call this file "BlockTest.java"
  */
 
-public class Example5 {
+public class BlockTest {
     public static void main(String[] args) {
         int x, y;
         y = 20;
