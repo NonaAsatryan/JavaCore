@@ -1,7 +1,6 @@
 package Chapter2;
 
 /*
-  Demonstrate a block of code.
   Call this file "BlockTest.java"
  */
 
