@@ -1,10 +1,5 @@
 package Chapter2;
 
-/*
-   Demonstrate the for loop.
-   Call this file "ForTest.java".
- */
-
 public class ForTest {
     public static void main(String[] args) {
 
