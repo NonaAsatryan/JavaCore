@@ -1,7 +1,5 @@
 package Chapter3;
 
-// Compute distance light travels using long variables.
-
 public class Light {
     public static void main(String[] args) {
         int lightspeed;
