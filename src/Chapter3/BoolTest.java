@@ -12,7 +12,6 @@ public class BoolTest {
         b = true;
         System.out.println("b is " + b);
 
-        // a boolean value can control the if statement
         if(b) {
             System.out.println("This is not executed.");
 
