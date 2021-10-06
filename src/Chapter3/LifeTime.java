@@ -1,7 +1,5 @@
 package Chapter3;
 
-// Demonstrate lifetime of a variable.
-
 public class LifeTime {
     public static void main(String[] args) {
         int x;
