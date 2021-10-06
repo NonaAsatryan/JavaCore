@@ -1,7 +1,5 @@
 package Chapter3;
 
-// Demonstrate block scope.
-
 public class Scope {
     public static void main(String[] args) {
         int x;  // known to all code within main
