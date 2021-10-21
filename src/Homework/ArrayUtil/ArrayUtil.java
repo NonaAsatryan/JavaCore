@@ -6,9 +6,9 @@ public class ArrayUtil {
 
         // Տպել մասիվի բոլոր էլեմենտները:
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < array.length; i++) {
 
-            System.out.println(array[i]);
+            System.out.print(array[i] + " ");
         }
 
         System.out.println();
@@ -24,14 +24,13 @@ public class ArrayUtil {
                 max = array[i];
             }
         }
-        System.out.println(" The maximum value: " + max);
+        System.out.println("The maximum value: " + max);
 
-        System.out.println();
         System.out.println();
 
         // Տպել մասիվի ամենափոքր թիվը:
 
-        int min = array[1];
+        int min = array[0];
 
         for (int i = 0; i < array.length; i++) {
 
@@ -42,64 +41,85 @@ public class ArrayUtil {
         System.out.println(" The minimum value: " + min);
 
         System.out.println();
-        System.out.println();
 
+        // Տպել մասիվի բոլոր զույգ էլեմենտները:
 
-        // Տպել մասիվի բոլոր զույգ և կենտ էլեմենտները:
-
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 == 0) {
-                System.out.println("Even number: " + array[i]);
-            } else
-                System.out.println("Odd number: " + array[i]);
-        }
-
-        System.out.println();
-        System.out.println();
-
-        int even_count = 0;
-        int odd_count = 0;
+        System.out.println("Print all evens");
 
         for (int i = 0; i < array.length; i++) {
             if (array[i] % 2 == 0) {
-                even_count++;
+                System.out.print(array[i] + " ");
             }
-            else
-                odd_count++;
         }
-        System.out.println("Number of even elements: " + even_count);
-        System.out.println("Number of odd elements: " + odd_count);
 
         System.out.println();
         System.out.println();
 
-        // Տպել մասիվի բոլոր էլեմենտների միջին թվաբանականը:
+        // Տպել մասիվի բոլոր կենտ էլեմենտները:
 
-         int sum1 = 0;
+        System.out.println("Print all odds");
 
         for (int i = 0; i < array.length; i++) {
-            sum1 = sum1 + array[i];
+            if (array[i] % 2 != 0) {
+                System.out.print(array[i] + " ");
+            }
         }
-        double average = sum1 / array.length;
-        System.out.println("The average is " + average);
 
         System.out.println();
         System.out.println();
 
-        // Տպել մասիվի էլեմենտների գումարը:
+        // Տպել մասիվի զույգ էլեմենտների քանակը:
 
-        int sum = 0;
+            int evenCount = 0;
+
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] % 2 == 0) {
+                    evenCount++;
+                }
+            }
+            System.out.println("Number of even elements: " + evenCount);
+
+            System.out.println();
+
+        // Տպել մասիվի կենտ էլեմենտների քանակը:
+
+        int oddCount = 0;
 
         for (int i = 0; i < array.length; i++) {
-
-            sum = sum + array [i];
+            if (array[i] % 2 != 0) {
+                oddCount++;
+            }
         }
-        System.out.println("The sum is " + sum);
+        System.out.println("Number of odd elements: " + oddCount);
 
-    }
+        System.out.println();
+
+            // Տպել մասիվի բոլոր էլեմենտների միջին թվաբանականը:
+
+            int sum1 = 0;
+
+            for (int i = 0; i < array.length; i++) {
+                sum1 = sum1 + array[i];
+            }
+
+            System.out.println("avg: " + sum1/ array.length);
+
+            System.out.println();
+            System.out.println();
+
+            // Տպել մասիվի էլեմենտների գումարը:
+
+            int sum = 0;
+
+            for (int i = 0; i < array.length; i++) {
+
+                sum = sum + array[i];
+            }
+            System.out.println("sum: " + sum);
+
+        }
 
 }
-
 
 
 
