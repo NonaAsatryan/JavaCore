@@ -1,4 +1,4 @@
-package Chapter4;
+package chapter4;
 
 // Masking sign extension.
 
