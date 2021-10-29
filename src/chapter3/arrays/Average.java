@@ -1,4 +1,4 @@
-package Chapter3.Arrays;
+package chapter3.arrays;
 
 // Average an array of values.
 
