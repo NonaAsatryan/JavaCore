@@ -1,4 +1,4 @@
-package Chapter3;
+package chapter3;
 
 // char variables behave like integers.
 
