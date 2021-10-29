@@ -1,4 +1,4 @@
-package Chapter2;
+package chapter2;
 
 public class ForTest {
     public static void main(String[] args) {
