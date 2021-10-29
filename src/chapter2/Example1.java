@@ -1,4 +1,4 @@
-package Chapter2;
+package chapter2;
 
 /*
    This is a simple Java program.
