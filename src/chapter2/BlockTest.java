@@ -1,4 +1,4 @@
-package Chapter2;
+package chapter2;
 
 /*
   Call this file "BlockTest.java"
