@@ -1,4 +1,4 @@
-package Chapter3;
+package chapter3;
 
 // Compute the area of a circle.
 
