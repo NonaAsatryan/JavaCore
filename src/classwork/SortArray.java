@@ -1,4 +1,4 @@
-package Classwork;
+package classwork;
 
 public class SortArray {
 
