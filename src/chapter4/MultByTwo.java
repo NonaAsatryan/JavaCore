@@ -1,4 +1,4 @@
-package Chapter4;
+package chapter4;
 
 // Left shifting asa a quick way too multiply by 2.
 
