@@ -1,4 +1,4 @@
-package Chapter3.Arrays;
+package chapter3.arrays;
 
 public class TwoDAgain {
     public static void main(String[] args) {
