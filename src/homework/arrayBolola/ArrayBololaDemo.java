@@ -16,13 +16,15 @@ public class ArrayBololaDemo {
 
         arrayBolola.bolola(bolola);
 
-        arrayBolola.bolola1(bolola);
+        boolean b = arrayBolola.bolola1(bolola);
+        System.out.println(b);
 
-        arrayBolola.bolola2(bolola1);
+        boolean isBob = arrayBolola.bolola2(bolola1);
+        System.out.println(isBob);
 
-        arrayBolola.array(text);
+        char[] result = arrayBolola.trim(text);
+         for (char c : result) {
+             System.out.print(c);
+         }
     }
 }
-
-
-
