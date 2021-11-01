@@ -33,23 +33,21 @@ public class ArrayBolola {
     // Պետք է տպենք true, եթե մեր մասիվը վերջանում է ly-ով,
     // եթե ոչ՝ false:
 
-    void bolola1(char[] bolola) {
+    boolean bolola1(char[] bolola) {
 
         if (bolola[bolola.length - 2] == 'l' &&
                 bolola[bolola.length - 1] == 'y') {
             System.out.println(true);
-        } else {
-            System.out.println(false);
         }
+        return false;
 
-        System.out.println();
     }
 
     // Տպում ենք true, եթե տեքստը պարունակում է bob բառը, բայց o-ի տեղը
     // կարող է լինել ցանկացած սիմվոլ։
     // օր․ abcbob → true, b9b -> true, բայց ասենք bac-> false
 
-    void bolola2(char[] bolola1) {
+    boolean bolola2(char[] bolola1) {
 
          boolean isBob = false;
 
@@ -59,9 +57,7 @@ public class ArrayBolola {
                 isBob = true;
             }
         }
-        System.out.println(isBob);
-
-        System.out.println();
+        return isBob;
     }
 
     // Տվյալ օրինակում կարող ենք կամայական քանակի պռաբելներ դնել թե սկզբից,
@@ -69,7 +65,7 @@ public class ArrayBolola {
     // որը text մասիվից կստանա char[] result մասիվ, որը կլինի նույն տեքստը,
     // առանց պռաբելների (իրար կողք կտպի hello java)։
 
-    void array(char[] text) {
+    char[] trim(char[] text) {
         int startIndex = 0;
         int endIndex = text.length - 1;
 
@@ -88,10 +84,7 @@ public class ArrayBolola {
         for (int i = startIndex; i <= endIndex; i++) {
             result[index++] = text[i];
         }
-        for (int i = 0; i < result.length; i++) {
-            System.out.print(result[i]);
-
-        }
+        return result;
     }
 
 }
