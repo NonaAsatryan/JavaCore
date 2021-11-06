@@ -45,8 +45,8 @@ public class DynamicArray {
     // տպել մասիվի ավելացված էլեմենտնեռը
 
     public void print() {
-        for (int i : array) {
-            System.out.print(i + " ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(array[i] + " ");
         }
     }
 }
