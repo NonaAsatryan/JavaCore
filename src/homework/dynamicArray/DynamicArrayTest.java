@@ -17,7 +17,7 @@ public class DynamicArrayTest {
         da.add(8);
         da.add(9);
 
-        int byIndex = da.getByIndex(10);
+        int byIndex = da.getByIndex(7);
         System.out.println(byIndex);
 
         System.out.println("Elements of the array: ");
