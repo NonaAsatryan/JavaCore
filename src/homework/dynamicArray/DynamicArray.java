@@ -36,10 +36,11 @@ public class DynamicArray {
     // մասիվի index-երրորդ էլեմենտը, հակառակ դեպքում վերադարձնել -1
 
     public int getByIndex(int index) {
-        if (index < size) {
-            return array[index];
-        } else
+        if (index < 0 || index > size) {
+            System.err.println("invalid index");
             return -1;
+        }
+            return array[index];
     }
 
     // տպել մասիվի ավելացված էլեմենտնեռը
