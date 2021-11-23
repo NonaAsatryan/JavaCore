@@ -20,9 +20,8 @@ public class AuthorStorage {
 
     public void print() {
         for (int i = 0; i < size; i++) {
-            System.out.print(authors[i] + " ");
+            System.out.print(authors[i]);
         }
-        System.out.println();
     }
 
     public void searchByName(String keyword) {
@@ -36,8 +35,49 @@ public class AuthorStorage {
 
     public void searchByAge(int minAge, int maxAge) {
         for (int i = 0; i < size; i++) {
-            if (authors[i].getAge() > minAge &&
-                    authors[i].getAge() < maxAge) {
+            if (authors[i].getAge() >= minAge &&
+                    authors[i].getAge() <= maxAge) {
+                System.out.println(authors[i]);
+            }
+        }
+    }
+
+    public Author getByEmail(String email) {
+        for (int i = 0; i < size; i++) {
+            if (authors[i].getEmail().equals(email)) {
+                return  authors[i];
+            }
+        }
+        return null;
+    }
+
+    public void changeName(String name) {
+        for (int i = 0; i < size; i++) {
+            if (authors[i].getName().equals(name)) {
+                System.out.println(authors[i]);
+            }
+        }
+    }
+
+    public void changeSurname(String surname) {
+        for (int i = 0; i < size; i++) {
+            if (authors[i].getSurname().equals(surname)) {
+                System.out.println(authors[i]);
+            }
+        }
+    }
+
+    public void changeGender(String gender) {
+        for (int i = 0; i < size; i++) {
+            if (authors[i].getGender().equals(gender)) {
+                System.out.println(authors[i]);
+            }
+        }
+    }
+
+    public void changeAge(int age) {
+        for (int i = 0; i < size; i++) {
+            if (authors[i].getAge() == age) {
                 System.out.println(authors[i]);
             }
         }
