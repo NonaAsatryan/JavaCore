@@ -1,32 +1,27 @@
 package chapter7;
 
-public class Stack {
+public class Stack1 {
 
-    /* Now, both stck and tos are private. This means that they
-    cannot be accidentally or maliciously altered in a way that
-    would be harmful to the stack.
-     */
-    private int stck[] = new int[10];
+    private int stck[];
     private int tos;
 
-    Stack() {
+    Stack1(int size) {
+        stck = new int[size];
         tos = -1;
     }
 
-    void push (int item) {
-        if (tos == 9) {
+    void push(int item) {
+        if (tos == stck.length - 1) {
             System.out.println("Stack is full.");
         } else
             stck[++tos] = item;
     }
 
-    int pop () {
+    int pop() {
         if (tos < 0) {
             System.out.println("Stack underflow.");
             return 0;
         } else
             return stck[tos--];
-
     }
-
 }
