@@ -51,35 +51,18 @@ public class AuthorStorage {
         return null;
     }
 
-    public void changeName(String name) {
+    public void deleteAuthor(String email) {
+        int index = 0;
         for (int i = 0; i < size; i++) {
-            if (authors[i].getName().equals(name)) {
-                System.out.println(authors[i]);
+            if (index < 0 || index > size) {
+                System.err.println("Invalid index " + index);
+            } else {
+                for (i = index + 1; i < size ; i++) {
+                    authors [i - 1] = authors[i];
+                    System.out.println(authors[i]);
+                }
             }
-        }
-    }
-
-    public void changeSurname(String surname) {
-        for (int i = 0; i < size; i++) {
-            if (authors[i].getSurname().equals(surname)) {
-                System.out.println(authors[i]);
-            }
-        }
-    }
-
-    public void changeGender(String gender) {
-        for (int i = 0; i < size; i++) {
-            if (authors[i].getGender().equals(gender)) {
-                System.out.println(authors[i]);
-            }
-        }
-    }
-
-    public void changeAge(int age) {
-        for (int i = 0; i < size; i++) {
-            if (authors[i].getAge() == age) {
-                System.out.println(authors[i]);
-            }
+            size --;
         }
     }
 }
