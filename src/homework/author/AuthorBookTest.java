@@ -20,12 +20,19 @@ public class AuthorBookTest {
     private static final String COUNT_BOOKS_BY_AUTHOR = "9";
     private static final String CHANGE_AUTHOR = "10";
     private static final String CHANGE_BOOK_AUTHOR = "11";
+    private static final String DELETE_AUTHOR = "12";
+    private static final String DELETE_BY_AUTHOR = "13";
+    private static final String DELETE_BOOK = "14";
 
     public static void main(String[] args) {
 
         authorStorage.add(new Author("poxos", "poxosyan", "poxos@mail.ru", 22, "male"));
         authorStorage.add(new Author("poxosuhi", "poxosyan", "poxosuhi@mail.ru", 23, "female"));
         authorStorage.add(new Author("petros", "petrosyan", "petros@mail.ru", 25, "male"));
+        Author author = new Author("poxos", "poxosyan",  "poxos@mail.ru", 22, "male");
+        bookStorage.add(new Book("book", "drama", 45, 4, author));
+        bookStorage.add(new Book("book2", "fantasy", 80, 8, author));
+        bookStorage.add(new Book("book3", "detective", 120, 10, author));
 
         boolean isRun = true;
         while (isRun) {
@@ -68,41 +75,69 @@ public class AuthorBookTest {
                 case CHANGE_BOOK_AUTHOR:
                     changeBookAuthor();
                     break;
+                case DELETE_AUTHOR:
+                    deleteAuthor();
+                    break;
+                case DELETE_BY_AUTHOR:
+                    deleteByAuthor();
+                    break;
+                case DELETE_BOOK:
+                    deleteBook();
+                    break;
                 default:
                     System.out.println("Invalid command");
             }
         }
     }
 
+    private static void deleteBook() {
+        System.out.println("Please, input book's title");
+        String title = scanner.nextLine();
+        bookStorage.deleteBook(title);
+    }
+
+    private static void deleteByAuthor() {
+        System.out.println("Please, input author's email");
+        String email = scanner.nextLine();
+        bookStorage.deleteByAuthor(email);
+    }
+
+    private static void deleteAuthor() {
+        System.out.println("Please, input author's email");
+        String email = scanner.nextLine();
+        authorStorage.deleteAuthor(email);
+    }
+
     private static void changeBookAuthor() {
         System.out.println("Please, input book's title");
         String title = scanner.nextLine();
-        bookStorage.searchByTitle(title);
-        System.out.println("Please, input author's email");
-        String email = scanner.nextLine();
-        authorStorage.getByEmail(email);
-
+        Book book = bookStorage.getByTitle(title);
+        if (book != null) {
+            System.out.println(book);
+            System.out.println("Please, input author's email");
+            String email = scanner.nextLine();
+            book.setAuthor(authorStorage.getByEmail(email));
+        }
     }
 
     private static void changeAuthor() {
         System.out.println("Please, input author's email");
         String email = scanner.nextLine();
-        if (authorStorage.getByEmail(email).getEmail().equals(email)) {
-            System.out.println(authorStorage.getByEmail(email));
-            System.out.println("please input author's name");
+        Author author = authorStorage.getByEmail(email);
+        if (author != null) {
+            System.out.println(author);
+            System.out.println("Please, input author's name");
             String name = scanner.nextLine();
-            authorStorage.changeName(name);
-            System.out.println("please input author's surname");
+            author.setName(name);
+            System.out.println("Please, input author's surname");
             String surname = scanner.nextLine();
-            authorStorage.changeSurname(surname);
-            System.out.println("please input author's gender");
+            author.setSurname(surname);
+            System.out.println("Please, input author's gender");
             String gender = scanner.nextLine();
-            authorStorage.changeGender(gender);
-            System.out.println("please input author's age");
+            author.setGender(gender);
+            System.out.println("Please input author's age");
             int age = Integer.parseInt(scanner.nextLine());
-            authorStorage.changeAge(age);
-            Author author = new Author(name,surname,email,age,gender);
-            System.out.println(authorStorage.getByEmail(email));
+            author.setAge(age);
         }
     }
 
@@ -171,6 +206,9 @@ public class AuthorBookTest {
         System.out.println("Please input " + COUNT_BOOKS_BY_AUTHOR + " for counting books by author");
         System.out.println("Please input " + CHANGE_AUTHOR + " for changing author");
         System.out.println("Please input " + CHANGE_BOOK_AUTHOR + " for changing author");
+        System.out.println("Please input " + DELETE_AUTHOR + " for deleting author");
+        System.out.println("Please input " + DELETE_BY_AUTHOR + " for deleting by author");
+        System.out.println("Please input " + DELETE_BOOK + " for deleting book");
     }
 
     private static void searchByName() {
