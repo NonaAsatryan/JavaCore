@@ -5,11 +5,12 @@ public class AuthorStorage {
     private Author[] authors = new Author[10];
     private int size;
 
-    public void add(Author author) {
+    public Author add(Author author) {
         if (authors.length == size) {
             extend();
         }
         authors[size++] = author;
+        return null;
     }
 
     private void extend() {
@@ -54,15 +55,14 @@ public class AuthorStorage {
     public void deleteAuthor(String email) {
         int index = 0;
         for (int i = 0; i < size; i++) {
-            if (index < 0 || index > size) {
-                System.err.println("Invalid index " + index);
-            } else {
-                for (i = index + 1; i < size ; i++) {
-                    authors [i - 1] = authors[i];
-                    System.out.println(authors[i]);
-                }
+            if (authors[i].getEmail().equals(email)) {
+                System.out.println(authors[i]);
             }
-            size --;
         }
+        for (int i = index + 1; i < size ; i++) {
+            authors [i - 1] = authors[i];
+            System.out.println(authors[i]);
+        }
+        size --;
     }
 }
