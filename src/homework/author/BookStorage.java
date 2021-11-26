@@ -42,11 +42,50 @@ public class BookStorage {
 
     public void countBooksByAuthor(String email) {
         for (int i = 0; i < size; i++) {
-            if (books[i].getAuthor().getEmail().equals(email)){
+            if (books[i].getAuthor().getEmail().equals(email)) {
                 System.out.println(books[i].getCount());
             } else {
                 System.out.println("There is no book yet");
             }
+        }
+    }
+
+    public Book getByTitle(String title) {
+        for (int i = 0; i < size; i++) {
+            if (books[i].getTitle().equals(title)) {
+                return books[i];
+            }
+        }
+        return null;
+    }
+
+    public void deleteByAuthor(String email) {
+        int index = 0;
+        for (int i = 0; i < size; i++) {
+            if (index < 0 || index > size) {
+                System.err.println("Invalid index " + index);
+            } else {
+                for (i = index + 1; i < size; i++) {
+                    books[i - 1] = books[i];
+                    System.out.println(books[i]);
+                }
+            }
+            size--;
+        }
+    }
+
+    public void deleteBook(String title) {
+        int index = 0;
+        for (int i = 0; i < size; i++) {
+            if (index < 0 || index > size) {
+                System.err.println("Invalid index " + index);
+            } else {
+                for (i = index + 1; i < size; i++) {
+                    books[i - 1] = books[i];
+                    System.out.println(books[i]);
+                }
+            }
+            size--;
         }
     }
 }
