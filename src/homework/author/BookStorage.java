@@ -62,30 +62,28 @@ public class BookStorage {
     public void deleteByAuthor(String email) {
         int index = 0;
         for (int i = 0; i < size; i++) {
-            if (index < 0 || index > size) {
-                System.err.println("Invalid index " + index);
-            } else {
-                for (i = index + 1; i < size; i++) {
-                    books[i - 1] = books[i];
-                    System.out.println(books[i]);
-                }
+            if (books[i].getAuthor().getEmail().equals(email)) {
+                System.out.println(books[i]);
             }
-            size--;
         }
+        for (int i = index + 1; i < size ; i++) {
+             books [i - 1] = books[i];
+            System.out.println(books[i]);
+        }
+        size --;
     }
 
     public void deleteBook(String title) {
         int index = 0;
         for (int i = 0; i < size; i++) {
-            if (index < 0 || index > size) {
-                System.err.println("Invalid index " + index);
-            } else {
-                for (i = index + 1; i < size; i++) {
-                    books[i - 1] = books[i];
-                    System.out.println(books[i]);
-                }
+            if (books[i].getTitle().equals(title)) {
+                System.out.println(books[i]);
             }
-            size--;
         }
+        for (int i = index + 1; i < size; i++) {
+            books[i - 1] = books[i];
+            System.out.println(books[i]);
+        }
+        size--;
     }
 }
