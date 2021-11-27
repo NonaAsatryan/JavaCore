@@ -64,6 +64,30 @@ public class Author {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Author author = (Author) o;
+
+        if (age != author.age) return false;
+        if (name != null ? !name.equals(author.name) : author.name != null) return false;
+        if (surname != null ? !surname.equals(author.surname) : author.surname != null) return false;
+        if (email != null ? !email.equals(author.email) : author.email != null) return false;
+        return gender != null ? gender.equals(author.gender) : author.gender == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + age;
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Author{" +
                 "name='" + name + '\'' +
