@@ -2,13 +2,15 @@ package homework.author;
 
 public class Book {
 
+    private String serialID;   //AG6787656
     private String title;
     private String description;
     private double price;
     private int count;
     private Author author;
 
-    public Book(String title, String description,double price, int count, Author author) {
+    public Book(String serialID, String title, String description,double price, int count, Author author) {
+        this.serialID = serialID;
         this.title = title;
         this.description = description;
         this.price = price;
@@ -20,8 +22,15 @@ public class Book {
 
     }
 
-    public String getTitle() {
+    public String getSerialID() {
+        return serialID;
+    }
 
+    public void setSerialID(String serialID) {
+        this.serialID = serialID;
+    }
+
+    public String getTitle() {
         return title;
     }
 
@@ -62,9 +71,39 @@ public class Book {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (Double.compare(book.price, price) != 0) return false;
+        if (count != book.count) return false;
+        if (serialID != null ? !serialID.equals(book.serialID) : book.serialID != null) return false;
+        if (title != null ? !title.equals(book.title) : book.title != null) return false;
+        if (description != null ? !description.equals(book.description) : book.description != null) return false;
+        return author != null ? author.equals(book.author) : book.author == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = serialID != null ? serialID.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + count;
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Book{" +
-                "title='" + title + '\'' +
+                "serialID='" + serialID + '\'' +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", count=" + count +
