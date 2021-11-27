@@ -5,18 +5,17 @@ public class AuthorStorage {
     private Author[] authors = new Author[10];
     private int size;
 
-    public Author add(Author author) {
+    public void add(Author author) {
         if (authors.length == size) {
             extend();
         }
         authors[size++] = author;
-        return null;
     }
 
     private void extend() {
-            Author[] temp = new Author[authors.length + 10];
-            System.arraycopy(authors, 0, temp, 0, authors.length);
-            authors = temp;
+        Author[] temp = new Author[authors.length + 10];
+        System.arraycopy(authors, 0, temp, 0, authors.length);
+        authors = temp;
     }
 
     public void print() {
@@ -28,7 +27,7 @@ public class AuthorStorage {
     public void searchByName(String keyword) {
         for (int i = 0; i < size; i++) {
             if (authors[i].getName().contains(keyword) ||
-            authors[i].getSurname().contains(keyword)) {
+                    authors[i].getSurname().contains(keyword)) {
                 System.out.println(authors[i]);
             }
         }
@@ -46,23 +45,20 @@ public class AuthorStorage {
     public Author getByEmail(String email) {
         for (int i = 0; i < size; i++) {
             if (authors[i].getEmail().equals(email)) {
-                return  authors[i];
+                return authors[i];
             }
         }
         return null;
     }
 
-    public void deleteAuthor(String email) {
-        int index = 0;
+    public void delete(Author author) {
         for (int i = 0; i < size; i++) {
-            if (authors[i].getEmail().equals(email)) {
-                System.out.println(authors[i]);
+            if (authors[i].equals(author)) {
+                ArrayUtil.deleteByIndex(authors, i, size);
+                size--;
+                break;
             }
         }
-        for (int i = index + 1; i < size ; i++) {
-            authors [i - 1] = authors[i];
-            System.out.println(authors[i]);
-        }
-        size --;
     }
 }
+
