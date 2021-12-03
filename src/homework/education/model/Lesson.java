@@ -1,4 +1,4 @@
-package homework.education;
+package homework.education.model;
 
 
 public class Lesson {
