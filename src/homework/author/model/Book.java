@@ -1,4 +1,4 @@
-package homework.author;
+package homework.author.model;
 
 public class Book {
 
