@@ -1,5 +1,6 @@
 package homework.author.storage;
 
+import homework.author.exception.BookNotFoundException;
 import homework.author.util.ArrayUtil;
 import homework.author.model.Author;
 import homework.author.model.Book;
@@ -28,13 +29,13 @@ public class BookStorage {
         }
     }
 
-    public Book getBySerialID(String serialID) {
+    public Book getBySerialID(String serialID) throws BookNotFoundException {
         for (int i = 0; i < size; i++) {
             if (books[i].getSerialID().equals(serialID)) {
                 return books[i];
             }
         }
-        return null;
+        throw new BookNotFoundException("Book doesn't exist: " +serialID);
     }
 
     public void searchByTitle(String keyword) {
@@ -47,8 +48,10 @@ public class BookStorage {
 
     public void searchBooksByAuthor(Author author) {
         for (int i = 0; i < size; i++) {
-            if (books[i].getAuthor().equals(author)) {
-                System.out.println(books[i]);
+            for (Author author1 : books[i].getAuthors()) {
+                if (author1.equals(author)) {
+                    System.out.println(books[i]);
+                }
             }
         }
     }
@@ -56,8 +59,10 @@ public class BookStorage {
     public void countBooksByAuthor(Author author) {
         int count = 0;
         for (int i = 0; i < size; i++) {
-            if (books[i].getAuthor().equals(author)) {
-                count++;
+            for (Author author1 : books[i].getAuthors()) {
+                if (author1.equals(author)) {
+                    count++;
+                }
             }
         }
         System.out.println("count of " + author.getEmail() + " author's book is " + count);
@@ -65,8 +70,10 @@ public class BookStorage {
 
     public void deleteByAuthor(Author author) {
         for (int i = 0; i < size; i++) {
-            if (books[i].getAuthor().equals(author)) {
-                ArrayUtil.deleteByIndex(books, i, size);
+            for (Author author1 : books[i].getAuthors()) {
+                if (author1.equals(author)) {
+                    ArrayUtil.deleteByIndex(books, i, size);
+                }
             }
         }
     }
