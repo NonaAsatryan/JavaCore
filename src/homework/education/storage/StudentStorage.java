@@ -38,8 +38,10 @@ public class StudentStorage {
 
     public void printByLesson(Lesson lesson) {
         for (int i = 0; i < size; i++) {
-            if (students[i].getLesson().equals(lesson)) {
-                System.out.println(students[i]);
+            for (Lesson lesson1 :students[i].getLesson() ) {
+                if (lesson.equals(lesson1)) {
+                    System.out.println(students[i]);
+                }
             }
         }
     }
