@@ -155,7 +155,7 @@ public class StudentLessonTest implements StudentLessonCommands {
                 System.out.println("Please, input surname");
                 String surname = scanner.nextLine();
 
-                System.out.println("Please, input surname");
+                System.out.println("Please, input password");
                 String password = scanner.nextLine();
 
                 System.out.println("Please, input type (ADMIN, USER");
