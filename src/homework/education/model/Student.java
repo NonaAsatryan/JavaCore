@@ -1,22 +1,22 @@
 package homework.education.model;
 
-
-import java.util.Arrays;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
-public class Student {
+public class Student implements Serializable {
 
     private String name;
     private String surname;
     private int age;
     private String email;
     private String phone;
-    private Lesson[] lessons;
+    private Set<Lesson> lessons;
     private Date dateOfBirth;
 
 
     public Student(String name, String surname, int age, String email,
-                                     String phone, Lesson[] lessons, Date dateOfBirth) {
+                                     String phone, Set<Lesson> lessons, Date dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -70,11 +70,11 @@ public class Student {
         this.phone = phone;
     }
 
-    public Lesson[] getLesson() {
+    public Set<Lesson> getLessons() {
         return lessons;
     }
 
-    public void setLessons(Lesson[] lessons) {
+    public void setLessons(Set<Lesson> lessons) {
         this.lessons = lessons;
     }
 
@@ -98,8 +98,7 @@ public class Student {
         if (surname != null ? !surname.equals(student.surname) : student.surname != null) return false;
         if (email != null ? !email.equals(student.email) : student.email != null) return false;
         if (phone != null ? !phone.equals(student.phone) : student.phone != null) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(lessons, student.lessons)) return false;
+        if (lessons != null ? !lessons.equals(student.lessons) : student.lessons != null) return false;
         return dateOfBirth != null ? dateOfBirth.equals(student.dateOfBirth) : student.dateOfBirth == null;
     }
 
@@ -110,7 +109,7 @@ public class Student {
         result = 31 * result + age;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(lessons);
+        result = 31 * result + (lessons != null ? lessons.hashCode() : 0);
         result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         return result;
     }
@@ -123,7 +122,7 @@ public class Student {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", lessons=" + Arrays.toString(lessons) +
+                ", lessons=" + lessons +
                 ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
