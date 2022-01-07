@@ -2,63 +2,56 @@ package homework.education.storage;
 
 import homework.education.model.Lesson;
 import homework.education.model.Student;
+import homework.education.util.FileUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentStorage {
 
-    private Student[] students = new Student[10];
-    private int size;
+    private List<Student> students = new ArrayList<>();
 
     public void add(Student student) {
-        if (students.length == size) {
-            extend();
-        }
-        students[size++] = student;
-    }
-
-    private void extend() {
-        Student[] temp = new Student[students.length + 10];
-        System.arraycopy(students, 0, temp, 0, students.length);
-        students = temp;
+        students.add(student);
+        serialize();
     }
 
     public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.print(students[i]);
+        for (Student student : students) {
+            System.out.print(student);
         }
     }
 
     public Student getByEmail(String email) {
-        for (int i = 0; i < size; i++) {
-            if (students[i].getEmail().equals(email)) {
-                return students[i];
+        for (Student student : students) {
+            if (student.getEmail().equals(email)) {
+                return student;
             }
         }
         return null;
     }
 
     public void printByLesson(Lesson lesson) {
-        for (int i = 0; i < size; i++) {
-            for (Lesson lesson1 :students[i].getLesson() ) {
-                if (lesson.equals(lesson1)) {
-                    System.out.println(students[i]);
+        for (Student student : students) {
+                if (lesson.getStudent().equals(lesson)) {
+                    System.out.println(student);
                 }
-            }
         }
     }
 
     public void delete(Student student) {
-        for (int i = 0; i < size; i++) {
-            if (students[i].equals(student)) {
-                deleteByIndex(i);
-                break;
-            }
+        students.remove(student);
+        serialize();
+    }
+
+    public void initData() {
+        List<Student> studentList = FileUtil.deserializeStudents();
+        if (studentList != null) {
+            students = studentList;
         }
     }
 
-    private void deleteByIndex(int index) {
-        for (int i = index + 1; i < size; i++) {
-            students[i - 1] = students[i];
-        }
-        size--;
+    public void serialize() {
+        FileUtil.serializeStudents(students);
     }
 }
