@@ -1,19 +1,20 @@
 package homework.author.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Author {
+public class Author implements Serializable {
 
     private String name;
     private String surname;
     private String email;
     private int age;
-    private String gender;
+    private Gender gender;
     private Date dateOfBirth;
 
 
     public Author(String name, String surname, String email,
-                  int age, String gender, Date dateOfBirth) {
+                  int age, Gender gender, Date dateOfBirth) {
 
         this.name = name;
         this.surname = surname;
@@ -59,11 +60,11 @@ public class Author {
         this.age = age;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -108,7 +109,7 @@ public class Author {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
-                ", gender='" + gender + '\'' +
+                ", gender=" + gender +
                 ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
