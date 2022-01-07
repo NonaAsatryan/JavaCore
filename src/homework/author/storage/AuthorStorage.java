@@ -1,67 +1,67 @@
 package homework.author.storage;
 
-import homework.author.util.ArrayUtil;
 import homework.author.model.Author;
+import homework.author.util.FileUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuthorStorage {
 
-    private Author[] authors = new Author[10];
-    private int size;
+    private List<Author> authors = new ArrayList<>();
 
     public void add(Author author) {
-        if (authors.length == size) {
-            extend();
-        }
-        authors[size++] = author;
-    }
-
-    private void extend() {
-        Author[] temp = new Author[authors.length + 10];
-        System.arraycopy(authors, 0, temp, 0, authors.length);
-        authors = temp;
+        authors.add(author);
+        serialize();
     }
 
     public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.print(authors[i]);
+        for (Author author : authors) {
+            System.out.println(author);
         }
     }
 
     public void searchByName(String keyword) {
-        for (int i = 0; i < size; i++) {
-            if (authors[i].getName().contains(keyword) ||
-                    authors[i].getSurname().contains(keyword)) {
-                System.out.println(authors[i]);
+        for (Author author : authors) {
+            if (author.getName().contains(keyword) ||
+                    author.getSurname().contains(keyword)) {
+                System.out.println(author);
             }
         }
     }
 
     public void searchByAge(int minAge, int maxAge) {
-        for (int i = 0; i < size; i++) {
-            if (authors[i].getAge() >= minAge &&
-                    authors[i].getAge() <= maxAge) {
-                System.out.println(authors[i]);
+        for (Author author : authors) {
+            if (author.getAge() >= minAge &&
+                    author.getAge() <= maxAge) {
+                System.out.println(author);
             }
         }
     }
 
     public Author getByEmail(String email) {
-        for (int i = 0; i < size; i++) {
-            if (authors[i].getEmail().equals(email)) {
-                return authors[i];
+        for (Author author : authors) {
+            if (author.getEmail().equals(email)) {
+                return author;
             }
         }
         return null;
     }
 
     public void delete(Author author) {
-        for (int i = 0; i < size; i++) {
-            if (authors[i].equals(author)) {
-                ArrayUtil.deleteByIndex(authors, i, size);
-                size--;
-                break;
-            }
+        authors.remove(author);
+        serialize();
+    }
+
+    public void initData() {
+        List<Author> authorList = FileUtil.deserializeAuthors();
+        if (authorList != null) {
+            authors = authorList;
         }
+    }
+
+    public void serialize() {
+        FileUtil.serializeAuthors(authors);
     }
 }
 
