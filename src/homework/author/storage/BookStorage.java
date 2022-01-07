@@ -4,86 +4,82 @@ import homework.author.exception.BookNotFoundException;
 import homework.author.util.ArrayUtil;
 import homework.author.model.Author;
 import homework.author.model.Book;
+import homework.author.util.FileUtil;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class BookStorage {
 
-    private Book[] books = new Book[10];
-    private int size = 0;
+    private List<Book> books = new LinkedList<>();
 
     public void add(Book book) {
-        if (books.length == size) {
-            extend();
-        }
-        books[size++] = book;
-    }
-
-    private void extend() {
-        Book[] temp = new Book[books.length + 10];
-        System.arraycopy(books, 0, temp, 0, books.length);
-        books = temp;
+        books.add(book);
+        serialize();
     }
 
     public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.print(books[i]);
+        for (Book book : books) {
+            System.out.println(book);
         }
     }
 
     public Book getBySerialID(String serialID) throws BookNotFoundException {
-        for (int i = 0; i < size; i++) {
-            if (books[i].getSerialID().equals(serialID)) {
-                return books[i];
+        for (Book book : books) {
+            if (book.getSerialID().equals(serialID)) {
+                return book;
             }
         }
-        throw new BookNotFoundException("Book doesn't exist: " +serialID);
+        throw new BookNotFoundException("Book doesn't exist: " + serialID);
     }
 
     public void searchByTitle(String keyword) {
-        for (int i = 0; i < size; i++) {
-            if (books[i].getTitle().contains(keyword)) {
-                System.out.println(books[i]);
+        for (Book book : books) {
+            if (book.getTitle().contains(keyword)) {
+                System.out.println(book);
             }
         }
     }
 
     public void searchBooksByAuthor(Author author) {
-        for (int i = 0; i < size; i++) {
-            for (Author author1 : books[i].getAuthors()) {
-                if (author1.equals(author)) {
-                    System.out.println(books[i]);
-                }
+        for (Book book : books) {
+            if (book.getAuthors().contains(author)) {
+                System.out.println(book);
             }
         }
     }
 
     public void countBooksByAuthor(Author author) {
         int count = 0;
-        for (int i = 0; i < size; i++) {
-            for (Author author1 : books[i].getAuthors()) {
-                if (author1.equals(author)) {
-                    count++;
-                }
+        for (Book book : books) {
+            if (book.getAuthors().contains(author)) {
+                count++;
             }
         }
         System.out.println("count of " + author.getEmail() + " author's book is " + count);
     }
 
     public void deleteByAuthor(Author author) {
-        for (int i = 0; i < size; i++) {
-            for (Author author1 : books[i].getAuthors()) {
-                if (author1.equals(author)) {
-                    ArrayUtil.deleteByIndex(books, i, size);
-                }
+        for (Book book : books) {
+            if (book.getAuthors().contains(author)) {
+                books.remove(book);
             }
         }
+        serialize();
     }
 
     public void delete(Book book) {
-        for (int i = 0; i < size; i++) {
-            if (books[i].equals(book)) {
-                ArrayUtil.deleteByIndex(books, i, size);
-                break;
-            }
+        books.remove(book);
+        serialize();
+    }
+
+    public void initData() {
+        List<Book> bookList = FileUtil.deserializeBooks();
+        if (bookList != null) {
+            books = bookList;
         }
+    }
+    public void serialize() {
+        FileUtil.serializeBooks(books);
     }
 }
