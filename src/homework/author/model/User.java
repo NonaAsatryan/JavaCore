@@ -1,14 +1,16 @@
 package homework.author.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String name;
     private String surname;
     private String email;
     private String password;
-    private String type;
+    private UserType type;
 
-    public User(String name, String surname, String email, String password, String type) {
+    public User(String name, String surname, String email, String password, UserType type) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -51,11 +53,11 @@ public class User {
         this.password = password;
     }
 
-    public String getType() {
+    public UserType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(UserType type) {
         this.type = type;
     }
 
@@ -70,7 +72,7 @@ public class User {
         if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        return type != null ? type.equals(user.type) : user.type == null;
+        return type == user.type;
     }
 
     @Override
@@ -90,7 +92,7 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", type='" + type + '\'' +
+                ", type=" + type +
                 '}';
     }
 }
