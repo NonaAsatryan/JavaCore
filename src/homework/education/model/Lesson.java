@@ -1,7 +1,9 @@
 package homework.education.model;
 
 
-public class Lesson {
+import java.io.Serializable;
+
+public class Lesson implements Serializable {
 
     private String name;
     private String duration;
